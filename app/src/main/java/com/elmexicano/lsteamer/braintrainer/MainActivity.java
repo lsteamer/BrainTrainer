@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     //Map<Integer,TextView> mapKeys;
 
-
     RelativeLayout glay;
     RelativeLayout wlay;
+    RelativeLayout ilay;
 
     //TextViews in the app
     TextView quizt, timert, scoret;
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     start.animate().alpha(1).start();
+
 
                 }
             };
@@ -266,9 +268,11 @@ public class MainActivity extends AppCompatActivity {
         wlay.animate().alpha(0).start();
 
 
-        started=true;
+        started = true;
 
 
+
+        ilay.animate().alpha(0).start();
         //Defining the score and total of exercises
         score = total = 0;
 
@@ -298,6 +302,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
+
         //If the screen is rotated, choose a different layout
         if(Configuration.ORIENTATION_PORTRAIT==this.getResources().getConfiguration().orientation)
             setContentView(R.layout.activity_main);
@@ -319,6 +324,9 @@ public class MainActivity extends AppCompatActivity {
         //Hide the win
         wlay = (RelativeLayout) findViewById(R.id.winLayout);
         wlay.animate().alpha(0).start();
+
+
+        ilay = (RelativeLayout) findViewById(R.id.introLayout);
 
         //Hide the TextView that shows if the latest try was a hit or a miss
         resultT.setText("");
@@ -378,11 +386,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
         //Array that holds the results, to check that there are no two alike
         teNum = new int[9];
 
 
+
+
+        if(started==true)
+            ilay.animate().alpha(0).start();
 
         /*
         //Map
@@ -413,8 +424,8 @@ public class MainActivity extends AppCompatActivity {
         opt[8] = (TextView) findViewById(R.id.op9);
 
         for(int wa=0; wa<9;wa++){
-            opt[wa].setTextColor(Color.parseColor("#138d90"));
-            opt[wa].setBackgroundColor(Color.parseColor("#138d90"));
+            opt[wa].setTextColor(Color.parseColor("#EEEEEE"));
+            opt[wa].setBackgroundColor(Color.parseColor("#EEEEEE"));
         }
 
 
