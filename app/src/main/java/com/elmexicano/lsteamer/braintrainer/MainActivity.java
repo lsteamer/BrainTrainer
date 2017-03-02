@@ -103,11 +103,12 @@ public class MainActivity extends AppCompatActivity {
                     resultT.setText("");
 
 
-
+                    quizt.setText("QUIZ");
+                    timert.setText("Timer");
+                    scoret.setText("Score");
 
                     wlay.animate().alpha(1).start();
                     glay.animate().alpha(0).start();
-                    timert.setText("0");
                     //App is no longer running
                     running = false;
 
