@@ -1,4 +1,4 @@
-package com.elmexicano.lsteamer.braintrainer;
+package com.elmexicano.lsteamer.braintrainerapp;
 
 import org.junit.Test;
 

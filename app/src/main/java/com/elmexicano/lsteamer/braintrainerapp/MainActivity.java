@@ -1,4 +1,4 @@
-package com.elmexicano.lsteamer.braintrainer;
+package com.elmexicano.lsteamer.braintrainerapp;
 
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -7,14 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-/*
-import java.util.HashMap;
-import java.util.Map;
-*/
 
 import java.util.ArrayList;
 import java.util.List;
@@ -233,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    protected void fillText(View view){
+    public void fillText(View view){
         //If app is running
         if(running==true){
 
@@ -263,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //this method is run when the user hits the start button
-    protected void userStart(View view){
+    public void userStart(View view){
 
         glay.animate().alpha(1).start();
         wlay.animate().alpha(0).start();
@@ -321,7 +316,14 @@ public class MainActivity extends AppCompatActivity {
         //Button to Start the app
         start = (Button) findViewById(R.id.start);
         //start.animate().alpha(0).start();
-
+/*
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userStart(view);
+            }
+        });
+*/
         //Hide the win
         wlay = (RelativeLayout) findViewById(R.id.winLayout);
         wlay.animate().alpha(0).start();
@@ -424,9 +426,11 @@ public class MainActivity extends AppCompatActivity {
         opt[7] = (TextView) findViewById(R.id.op8);
         opt[8] = (TextView) findViewById(R.id.op9);
 
+
+
         for(int wa=0; wa<9;wa++){
-            opt[wa].setTextColor(Color.parseColor("#EEEEEE"));
-            opt[wa].setBackgroundColor(Color.parseColor("#EEEEEE"));
+            opt[wa].setTextColor(Color.parseColor("#Fafafa"));
+            opt[wa].setBackgroundColor(Color.parseColor("#fafafa"));
         }
 
 
