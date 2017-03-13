@@ -136,34 +136,77 @@ public class MainActivity extends AppCompatActivity {
 
         int uno, dos;
 
+        //decide if it's going to be true or false.
+        boolean operation = randNum.nextBoolean();
+
         List<Integer> rand = new ArrayList<Integer>();
 
         //Filling in the TextViews with numbers and colors
         for(int i = 0; i<9; i++){
-            uno = (randNum.nextInt(50-1+1)+1);
-            dos = (randNum.nextInt(49-1+1)+1);
 
-            //Checking that there aren't repeated numbers
-            for(int j = i-1; j>=0;j--){
+
+
+            if(operation){
+
+                uno = (randNum.nextInt(50-1+1)+1);
+                dos = (randNum.nextInt(49-1+1)+1);
+
+                //Checking that there aren't repeated numbers
+                for(int j = i-1; j>=0;j--){
                     while(teNum[j]==uno+dos){
                         uno = (randNum.nextInt(50-1+1)+1);
                         dos = (randNum.nextInt(49-1+1)+1);
                         j=i-1;
                     }
+                }
+
+                //Once that the number is not repeated, we store it for future proofing
+                teNum[i] = uno+dos;
+
+                //Setting the 'winner' in the quiz text
+                if(i==win)
+                    quizt.setText(" "+uno+" + "+dos+" ");
+
+                //Giving the single digits a 0 at the right
+                if(uno+dos<10)
+                    opt[i].setText(" 0" +String.valueOf(uno+dos)+" ");
+                else
+                    opt[i].setText(" " +String.valueOf(uno+dos)+" ");
+
             }
+            else{
 
-            //Once that the number is not repeated, we store it for future proofing
-            teNum[i] = uno+dos;
+                uno = (randNum.nextInt(99-1+1)+1);
+                dos = (randNum.nextInt(40-1+1)+1);
 
-            //Setting the 'winner' in the quiz text
-            if(i==win)
-                quizt.setText(" "+uno+" + "+dos+" ");
+                while(i==0&&uno<dos){
+                    uno = (randNum.nextInt(99-1+1)+1);
+                    dos = (randNum.nextInt(40-1+1)+1);
+                }
 
-            //Giving the single digits a 0 at the right
-            if(uno+dos<10)
-                opt[i].setText(" 0" +String.valueOf(uno+dos)+" ");
-            else
-                opt[i].setText(" " +String.valueOf(uno+dos)+" ");
+                //Checking that there aren't repeated numbers
+                for(int j = i-1; j>=0;j--){
+                    while(teNum[j]==(uno-dos)||uno<dos){
+                        uno = (randNum.nextInt(99-1+1)+1);
+                        dos = (randNum.nextInt(40-1+1)+1);
+                        j=i-1;
+                    }
+                }
+
+                //Once that the number is not repeated, we store it for future proofing
+                teNum[i] = uno-dos;
+
+                //Setting the 'winner' in the quiz text
+                if(i==win)
+                    quizt.setText(" "+uno+" - "+dos+" ");
+
+                //Giving the single digits a 0 at the right
+                if(uno-dos<10)
+                    opt[i].setText(" 0" +String.valueOf(uno-dos)+" ");
+                else
+                    opt[i].setText(" " +String.valueOf(uno-dos)+" ");
+
+            }
 
 
 
