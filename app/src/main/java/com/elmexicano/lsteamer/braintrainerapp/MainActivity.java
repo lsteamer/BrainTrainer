@@ -74,45 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
             newScreen();
 
-            //Set the timer settings
-            appRuns = new CountDownTimer(sec*1000,1000) {
-                public void onTick(long milisecondsUntilDone){
 
-
-                    timert.setText(""+String.format("%02d:%02d",
-                            TimeUnit.MILLISECONDS.toMinutes(sec*1000),
-                            TimeUnit.MILLISECONDS.toSeconds(sec*1000) -
-                                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(sec*1000))));
-
-                    //Happens when it's counting down
-                    sec--;
-                }
-
-                public void onFinish(){
-                    sco = (TextView) findViewById(R.id.scorete);
-                    tot = (TextView) findViewById(R.id.totalte);
-
-                    sco.setText(String.valueOf(score));
-                    tot.setText(String.valueOf(total));
-
-                    resultT.setText("");
-
-
-                    quizt.setText("QUIZ");
-                    timert.setText("Timer");
-                    scoret.setText("Score");
-
-                    wlay.animate().alpha(1).start();
-                    glay.animate().alpha(0).start();
-                    //App is no longer running
-                    running = false;
-
-
-                    start.animate().alpha(1).start();
-
-
-                }
-            };
 
             //Start the timer (and the app)
             appRuns.start();
@@ -280,6 +242,7 @@ public class MainActivity extends AppCompatActivity {
             for(int i = 0; i<9; i++)
                 if(i==win&&idOfViews[i]==view.getId()) {
                     score++;
+                    sec=sec+3;
                     latestOp=true;
                 }
 
@@ -398,10 +361,15 @@ public class MainActivity extends AppCompatActivity {
 
                 start.animate().alpha(0).start();
 
-                //Setting the message about the latest one.
-                resultT.setText("Missed");
-                if(latestOp==true)
-                    resultT.setText("Correct!");
+
+
+
+                if(total!=0){
+                    //Setting the message about the latest one.
+                    resultT.setText("Missed");
+                    if(latestOp==true)
+                        resultT.setText("Correct!");
+                }
 
             }
             else if (started==true){
@@ -488,6 +456,52 @@ public class MainActivity extends AppCompatActivity {
         idOfViews[6] = R.id.op7;
         idOfViews[7] = R.id.op8;
         idOfViews[8] = R.id.op9;
+
+
+        //Set the timer settings
+        appRuns = new CountDownTimer(sec*1000,1000) {
+            public void onTick(long milisecondsUntilDone){
+
+
+                timert.setText(""+String.format("%02d:%02d",
+                        TimeUnit.MILLISECONDS.toMinutes(sec*1000),
+                        TimeUnit.MILLISECONDS.toSeconds(sec*1000) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(sec*1000))));
+
+                //Happens when it's counting down
+                sec--;
+            }
+
+            public void onFinish(){
+                sco = (TextView) findViewById(R.id.scorete);
+                tot = (TextView) findViewById(R.id.totalte);
+
+                sco.setText(String.valueOf(score));
+                tot.setText(String.valueOf(total));
+
+                resultT.setText("");
+
+
+                quizt.setText("QUIZ");
+                timert.setText("Timer");
+                scoret.setText("Score");
+
+                wlay.animate().alpha(1).start();
+                glay.animate().alpha(0).start();
+                //App is no longer running
+                running = false;
+
+
+                start.animate().alpha(1).start();
+
+
+            }
+        };
+
+
+
+
+
 
         //Random number toolkit defined
         randNum = new Random();
